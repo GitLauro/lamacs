@@ -106,7 +106,7 @@
     ("u" . kill-word)
     ("o" . backward-kill-word)
     ("k" . set-mark-command)
-    ("_" . move-beginninng-of-line)
+    ("_" . move-beginning-of-line)
     (":" . move-end-of-line)
     ("[" . backward-paragraph)
     ("]" . forward-paragraph)
