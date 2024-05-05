@@ -126,6 +126,7 @@
     (" t." . mark-defun)
     (" z" . mark-whole-buffer)
     (" i" . exchange-mark-and-point)
+    (" sp" . visual-line-mode)
     ("e" . wymux/modaled-to-insert)))
 
 (modaled-define-state "insert"
@@ -139,6 +140,20 @@
   :bind
   '(([ESCAPE] . modaled-set-default-state)
     ([escape] . modaled-set-default-state)))
+
+(modaled-define-substate "dired")
+(modaled-define-keys
+  :state "dired"
+  :bind
+  '(("d" . dired-previous-line)
+    ("t" . dired-next-line)
+    ("b" . dired-goto-file)
+    ("i" . dired-isearch-filename)))
+
+(modaled-enable-substate-on-state-change
+  "dired"
+  :states '("normal")
+  :majur '(dired-mode))
 
 (modaled-define-default-state
   '("insert" wdired-mode eshell-mode eat-eshell-mode compilation-mode
@@ -211,3 +226,4 @@
 (customize-set-variable 'version-control t)
 (customize-set-variable 'kept-new-versions 20)
 (customize-set-variable 'kept-old-versions 20)
+(customize-set-variable 'isearch-lazy-count t)
